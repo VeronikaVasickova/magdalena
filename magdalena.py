@@ -7,6 +7,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import PyECLOUD.myloadmat_to_obj as mlo
 import scipy.constants as const
+import os
 
 #definitions
 eVtoJ = const.elementary_charge
@@ -16,6 +17,7 @@ def say_hi():
     print("Hi, I am Magdalena, and I know and can do a lot of things")
     return
 
+
 #numerical integration of heatload
 def get_heatload(path_to_mat):
     ob = mlo.myloadmat_to_obj(path_to_mat)
@@ -24,3 +26,13 @@ def get_heatload(path_to_mat):
     heatload_eV = energy/duration
     heatload_J = heatload_eV*eVtoJ
     return heatload_J
+
+
+#Runs all simulations in the directories provided
+def run_sims(dirs):
+    #dirs are a 1D list of strings, containing the names of directories in which the simulations are
+    for dir in dirs:
+        path = "/home/HPC/vesedlak/sim_workspace/"+dir
+        os.chdir(path)
+        os.system("sbatch submit.sh")
+
