@@ -27,12 +27,11 @@ def get_heatload(path_to_mat):
     heatload_J = heatload_eV*eVtoJ
     return heatload_J
 
-
 #Runs all simulations in the directories provided
 def run_sims(dirs):
     #dirs are a 1D list of strings, containing the names of directories in which the simulations are
-    for dir in dirs:
-        path = "/home/HPC/vesedlak/sim_workspace/"+dir
-        os.chdir(path)
-        os.system("sbatch submit.sh")
+    for di in dirs:
+        os.chdir(di)
+        os.system("sbatch job.job")
+
 
