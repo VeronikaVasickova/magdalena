@@ -1,0 +1,6 @@
+#!/bin/bash
+
+for n in {44502..70000}; 
+do
+    scancel $n
+done    
